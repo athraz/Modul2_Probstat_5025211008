@@ -30,6 +30,8 @@ y <- c(100, 95, 70, 90, 90, 90, 89, 90, 100)
 sd(x-y)
 ```
 
+![Screenshot_20221212_095208](https://user-images.githubusercontent.com/96050618/207076361-4c0e573c-68b8-471b-b9d4-8f7c8fd0835a.png)
+
 - 1b. Carilah nilai t (p-value)!
 
 Nilai t (p-value) dapat dicari dengan fungsi `t.test()` dengan argumen kedua array x dan y, serta argumen `paired` bernilai TRUE karena data yang diuji berpasangan.
@@ -38,6 +40,8 @@ Nilai t (p-value) dapat dicari dengan fungsi `t.test()` dengan argumen kedua arr
 #1b
 t.test(x, y, paired = TRUE)
 ```
+
+![Screenshot_20221212_095449](https://user-images.githubusercontent.com/96050618/207077092-5dd00e7a-db3b-43db-8bbb-b5832cdf0a99.png)
 
 - 1c. Tentukanlah apakah terdapat pengaruh yang signifikan secara statistika dalam hal kadar saturasi oksigen , sebelum dan sesudah melakukan aktivitas 𝐴 jika diketahui tingkat signifikansi 𝛼 = 5% serta H0 : “tidak ada pengaruh yang signifikan secara statistika dalam hal kadar saturasi oksigen, sebelum dan sesudah melakukan aktivitas 𝐴”!
 
@@ -50,7 +54,7 @@ Berdasarkan poin B, didapat bahwa nilai p-value adalah `0.00006003` yang mana be
 
 - 2a. Apakah Anda setuju dengan klaim tersebut?
 
-Setuju, karena rata-rata dan standar deviasi dari sampel acak sebesar 23.500 dan 3900 kilometer, maka sangat mungkin hasil uji pada grafik cenderung berada di daerah lebih dari 20.000 kilometer.
+Setuju, karena rata-rata dan standar deviasi dari sampel acak sebesar 23500 dan 3900 kilometer, maka sangat mungkin hasil uji pada grafik cenderung berada di daerah lebih dari 20000 kilometer.
 
 - 2b. Jelaskan maksud dari output yang dihasilkan! 
 
@@ -68,11 +72,13 @@ Selanjutnya, digunakan fungsi `tsum.test()` dengan argumen berupa rata-rata, sta
 tsum.test(mean.x = 23500, s.x = 3900, n.x = 100)
 ```
 
-Berdasarkan output yang dihasilkan, diperoleh rata-rata jarak tempuh mobil per tahun berada di antara 22.726,16 kilometer dan 24.273,84 kilometer untuk selang kepercayaan 95%. Sehingga klaim bahwa mobil dikemudikan rata-rata lebih dari 20.000 kilometer per tahun dapat diterima.
+![Screenshot_20221212_095543](https://user-images.githubusercontent.com/96050618/207077388-43c40eb5-e39a-465d-a862-a99fdf7ec467.png)
+
+Berdasarkan output yang dihasilkan, diperoleh rata-rata jarak tempuh mobil per tahun berada di antara 22726.16 kilometer dan 24273.84 kilometer untuk selang kepercayaan 95%. Sehingga klaim bahwa mobil dikemudikan rata-rata lebih dari 20000 kilometer per tahun dapat diterima.
 
 - 2c. Buatlah kesimpulan berdasarkan P-Value yang dihasilkan!
 
-Dari poin 2b didapatkan p-value sebesar `2.2.e10-16` yang mana lebih kecil dibandingkan tingkat signifikansi `𝛼 = 0.05`. Sehingga H0 ditolak dan H1 diterima, dalam artian klaim bahwa mobil dikemudikan rata-rata lebih dari 20.000 kilometer per tahun dapat diterima.
+Dari poin 2b didapatkan p-value sebesar `2.2.e-16` yang mana lebih kecil dibandingkan tingkat signifikansi `𝛼 = 0.05`. Sehingga H0 ditolak dan H1 diterima, dalam artian klaim bahwa mobil dikemudikan rata-rata lebih dari 20000 kilometer per tahun dapat diterima.
 
 ## Soal 3
 > Diketahui perusahaan memiliki seorang data analyst ingin memecahkan permasalahan pengambilan keputusan dalam perusahaan tersebut. Selanjutnya didapatkanlah data berikut dari perusahaan saham tersebut.
@@ -108,13 +114,80 @@ Pada deskripsi soal, permasalahan yang ingin diselesaikan adalah apakah ada perb
 
 - 4a. Buatlah masing masing jenis spesies menjadi 3 subjek "Grup" (grup 1, grup 2, grup 3). Lalu Gambarkan plot kuantil normal untuk setiap kelompok dan lihat apakah ada outlier utama dalam homogenitas varians.
 
+Data dari dataset dimasukkan ke data frame menggunakan fungsi `read.table()` dengan argumen `header` bernilai TRUE karena terdapat header pada tabel dataset. Selanjutnya data dibagi menjadi tiga grup sesuai dengan data pada kolom `Group`.
+
+```R
+#4a
+koceng <- read.table("https://rstatisticsandresearch.weebly.com/uploads/1/0/2/6/1026585/onewayanova.txt", header = TRUE)
+grup1 <- split(koceng, koceng$Group)$`1`
+grup2 <- split(koceng, koceng$Group)$`2`
+grup3 <- split(koceng, koceng$Group)$`3`
+```
+
+Dilanjutkan dengan menggambarkan plot kuantil normal untuk setiap grup untuk melihat apakah ada outlier utama dalam homogenitas varians pada masing-masing grup.
+
+```R
+qqnorm(grup1$Length)
+qqline(grup1$Length)
+```
+
+![Screenshot_20221212_095805](https://user-images.githubusercontent.com/96050618/207077916-fa96fc8a-d0a7-4dcb-883e-f930a4b73591.png)
+
+```R
+qqnorm(grup2$Length)
+qqline(grup2$Length)
+```
+
+![Screenshot_20221212_095835](https://user-images.githubusercontent.com/96050618/207078193-08c306c1-bcd1-4e74-b010-c9b0a05dc03e.png)
+
+```R
+qqnorm(grup3$Length)
+qqline(grup3$Length)
+```
+
+![Screenshot_20221212_095854](https://user-images.githubusercontent.com/96050618/207078203-89cd4f6f-e268-47fa-8155-d212e89eb205.png)
+
 - 4b. Carilah atau periksalah Homogeneity of variances nya, berapa nilai p yang didapatkan? Apa hipotesis dan kesimpulan yang dapat diambil?
+
+Diasumsikan bahwa variansi ketiga grup sama, maka homogeneity of variances bisa didapatkan menggunakan fungsi `bartlett.test()` dengan argumen dari data yang telah dimasukkan.
+
+```R
+#4b
+bartlett.test(koceng$Length, koceng$Group)
+```
+
+![Screenshot_20221212_100041](https://user-images.githubusercontent.com/96050618/207078569-0385b336-ff4b-49ae-84aa-c195bb851a8e.png)
+
+Didapatkan p-value sebesar `0.8054` yang mana bernilai lebih besar dari `𝛼 = 0.05`, sehingga asumsi ketiga grup memiliki variansi yang sama terpenuhi.
 
 - 4c. Untuk uji ANOVA, buatlah model linier dengan Panjang versus Grup dan beri nama model tersebut model 1.
 
+Model linier dibuat dengan menggunakan fungsi `lm()`, kemudian uji ANOVA dilakukan dengan menggunakan fungsi `anova()` dengan argumen berupa model yang telah dibuat.
+
+```R
+#4c
+model1 <- lm(Length ~ factor(Group), data = koceng)
+anova(model1)
+```
+
+![Screenshot_20221212_104921](https://user-images.githubusercontent.com/96050618/207090376-89c7412b-7603-42b3-b37f-97d4ba1bc601.png)
+
 - 4d. Dari Hasil Poin C, Berapakah nilai-p? Apa yang dapat Anda simpulkan dari H0?
 
+Dari hasil poin C, diperoleh p-value sebesar `0.013` yang mana bernilai lebih kecil dari `𝛼 = 0.05`. Sehingga H0 ditolak dan H1 diterima, terdapat perbedaan panjang kucing yang signifikan berdasarkan grupnya.
+
 - 4e. Verifikasilah jawaban model 1 dengan Post-hooc test TukeyHSD, dari nilai p yang didapatkan apakah satu jenis kucing lebih panjang dari yang lain? Jelaskan.
+
+Verifikasi jawaban model 1 menggunakan fungsi `TukeyHSD()` dengan argumen hasil fungsi `aov()` dari model 1.
+
+```R
+#4e
+TukeyHSD(aov(model1))
+```
+
+![Screenshot_20221212_105027](https://user-images.githubusercontent.com/96050618/207096003-fa9a8ba2-130f-4e7c-976d-93bda8a05643.png)
+
+Dari hasil test Tukey dengan tingkat signifikan 0.05, dapat dilihat bahwa terdapat perbedaan yang cukup siginfikan pada grup2-grup1 dan grup3-grup2.
 
 - 4f. Visualisasikan data dengan ggplot2!
 
