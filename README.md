@@ -84,7 +84,7 @@ Dari poin 2b didapatkan p-value sebesar `2.2.e-16` yang mana lebih kecil dibandi
 > Diketahui perusahaan memiliki seorang data analyst ingin memecahkan permasalahan pengambilan keputusan dalam perusahaan tersebut. Selanjutnya didapatkanlah data berikut dari perusahaan saham tersebut.
 
 | Nama Kota/Atribut      | Bandung  | Bali  |
-| :---------------------:| :------: | :-:   |
+| :---------------------:| :------: | :---: |
 | Jumlah Saham           | 19       | 27    |
 | Sampel Mean            | 3.64     | 2.79  |
 | Sampel Standar Deviasi | 1.67     | 1.32  |
@@ -100,9 +100,39 @@ Pada deskripsi soal, permasalahan yang ingin diselesaikan adalah apakah ada perb
 
 - 3b. Hitung Sampel Statistik
 
+Statistik sampel dihitung dengan fungsi `tsum.test()` dengan argumen sesuai dengan isi tabel, serta alternative two sided dan var.equal bernilai TRUE karena variansi keduanya dianggap sama.
+
+```R
+#3b
+tsum.test(mean.x = 36.4, s.x = 1.67, n.x = 19, 
+          mean.y = 2.79, s.y = 1.32, n.y = 27,
+          alternative = "two.sided", var.equal = TRUE)
+```
+
+![Screenshot_20221212_113432](https://user-images.githubusercontent.com/96050618/207101015-3815c193-1696-4017-8c0b-64c8e0205619.png)
+
 - 3c. Lakukan Uji Statistik (df = 2)
 
+Uji statistik dilakukan dengan fungsi `plotDist()` yang membutuhkan package library `mosaic`.
+
+```R
+#3c
+install.packages("mosaic")
+library(mosaic)
+plotDist(dist = 't', df = 2, col = "#FFBC04")
+```
+
+![Screenshot_20221212_113752](https://user-images.githubusercontent.com/96050618/207101895-2abb7531-b29c-4aee-bfe0-b290d80811a2.png)
+
 - 3d. Nilai Kritikal
+
+Nilai kritikal didapatkan dengan fungsi qchisq() dengan derajat bebas 2 dan
+
+```R
+#3d
+qchisq(p = 0.05, df = 2, lower.tail = FALSE)
+```
+![Screenshot_20221212_114310](https://user-images.githubusercontent.com/96050618/207103055-3082bdd3-2745-4ffc-a68d-27137354e85e.png)
 
 - 3e. Keputusan
 
