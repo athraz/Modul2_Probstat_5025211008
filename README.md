@@ -1,5 +1,5 @@
 # Modul2_Probstat_5025211008
-Penjelasan Praktikum Modul 1 Probabilitas dan Statistik.  
+Penjelasan Praktikum Modul 2 Probabilitas dan Statistik.  
 Dibuat oleh Muhammad Razan Athallah (5025211008).
 
 ## Soal 1
@@ -47,12 +47,32 @@ Berdasarkan poin B, didapat bahwa nilai p-value adalah `0.00006003` yang mana be
 ## Soal 2
 > Diketahui bahwa mobil dikemudikan rata-rata lebih dari 20.000 kilometer per tahun. Untuk menguji klaim ini, 100 pemilik mobil yang dipilih secara acak diminta untuk mencatat jarak yang mereka tempuh. Jika sampel acak menunjukkan rata-rata 23.500 kilometer dan standar deviasi 3900 kilometer. 
 
+
 - 2a. Apakah Anda setuju dengan klaim tersebut?
+
+Setuju, karena rata-rata dan standar deviasi dari sampel acak sebesar 23.500 dan 3900 kilometer, maka sangat mungkin hasil uji pada grafik cenderung berada di daerah lebih dari 20.000 kilometer.
 
 - 2b. Jelaskan maksud dari output yang dihasilkan! 
 
+Sebelumnya terlebih dahulu melakukan instalasi package library BSDA.
+
+```R
+install.packages("BSDA")
+library(BSDA)
+```
+
+Selanjutnya, digunakan fungsi `tsum.test()` dengan argumen berupa rata-rata, standar deviasi, dan banyak data sampel. 
+
+```R
+#2b
+tsum.test(mean.x = 23500, s.x = 3900, n.x = 100)
+```
+
+Berdasarkan output yang dihasilkan, diperoleh rata-rata jarak tempuh mobil per tahun berada di antara 22.726,16 kilometer dan 24.273,84 kilometer untuk selang kepercayaan 95%. Sehingga klaim bahwa mobil dikemudikan rata-rata lebih dari 20.000 kilometer per tahun dapat diterima.
+
 - 2c. Buatlah kesimpulan berdasarkan P-Value yang dihasilkan!
 
+Dari poin 2b didapatkan p-value sebesar `2.2.e10-16` yang mana lebih kecil dibandingkan tingkat signifikansi `𝛼 = 0.05`. Sehingga H0 ditolak dan H1 diterima, dalam artian klaim bahwa mobil dikemudikan rata-rata lebih dari 20.000 kilometer per tahun dapat diterima.
 
 ## Soal 3
 > Diketahui perusahaan memiliki seorang data analyst ingin memecahkan permasalahan pengambilan keputusan dalam perusahaan tersebut. Selanjutnya didapatkanlah data berikut dari perusahaan saham tersebut.
@@ -67,6 +87,10 @@ Berdasarkan poin B, didapat bahwa nilai p-value adalah `0.00006003` yang mana be
 > Dari data diatas berilah keputusan serta kesimpulan yang didapatkan dari hasil diatas. Asumsikan nilai variancenya sama, apakah ada perbedaan pada rata-ratanya (𝛼 = 0.05)? Buatlah :
 
 - 3a. H0 dan H1
+
+Pada deskripsi soal, permasalahan yang ingin diselesaikan adalah apakah ada perbedaan pada rata-rata saham, sehingga H0 dan H1 adalah sebagai berikut:   
+`H0: μ1 - μ2 = 0` (rata-rata saham di Bandung sama dengan di Bali)   
+`H1: μ1 - μ2 ≠ 0` (rata-rata saham di Bandung tidak sama dengan di Bali)
 
 - 3b. Hitung Sampel Statistik
 
