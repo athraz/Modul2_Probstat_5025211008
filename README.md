@@ -54,7 +54,7 @@ Setuju, karena rata-rata dan standar deviasi dari sampel acak sebesar 23.500 dan
 
 - 2b. Jelaskan maksud dari output yang dihasilkan! 
 
-Sebelumnya terlebih dahulu melakukan instalasi package library BSDA.
+Terlebih dahulu dilakukan instalasi package library BSDA.
 
 ```R
 install.packages("BSDA")
