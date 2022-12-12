@@ -191,6 +191,18 @@ Dari hasil test Tukey dengan tingkat signifikan 0.05, dapat dilihat bahwa terdap
 
 - 4f. Visualisasikan data dengan ggplot2!
 
+```R
+#4f
+install.packages("ggplot2")
+library(ggplot2)
+koceng$Group = factor(koceng$Group,labels = c("Kucing Oren", "Kucing Hitam", "Kucing Putih"))
+ggplot(koceng, aes(x = Group, y = Length)) + 
+      geom_boxplot(fill = "#FFBC04", colour = "black") + 
+      xlab("Group") + ylab("Length")
+```
+
+![Screenshot_20221212_112550](https://user-images.githubusercontent.com/96050618/207098933-6016dd82-1fb0-4250-9817-a5579abed21d.png)
+
 
 ## Soal 5
 > Data yang digunakan merupakan hasil eksperimen yang dilakukan untuk mengetahui pengaruh suhu operasi (100˚C, 125˚C dan 150˚C) dan tiga jenis kaca pelat muka (A, B dan C) pada keluaran cahaya tabung osiloskop. Percobaan dilakukan sebanyak 27 kali dan didapat data sebagai berikut: Data Hasil Eksperimen. Dengan data tersebut: 
