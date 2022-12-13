@@ -47,6 +47,7 @@ t.test(x, y, paired = TRUE)
 
 Berdasarkan poin B, didapat bahwa nilai p-value adalah `0.00006003` yang mana bernilai lebih kecil dari tingkat signifikansi `𝛼 = 0.05`, sehingga dapat disimpulkan bahwa H0 ditolak dan H1 diterima. Dalam artian terdapat pengaruh yang signifikan secara statistika dalam hal kadar saturasi oksigen, sebelum dan sesudah melakukan aktivitas 𝐴.
 
+$~$
 
 ## Soal 2
 > Diketahui bahwa mobil dikemudikan rata-rata lebih dari 20.000 kilometer per tahun. Untuk menguji klaim ini, 100 pemilik mobil yang dipilih secara acak diminta untuk mencatat jarak yang mereka tempuh. Jika sampel acak menunjukkan rata-rata 23.500 kilometer dan standar deviasi 3900 kilometer. 
@@ -78,7 +79,9 @@ Berdasarkan output yang dihasilkan, diperoleh rata-rata jarak tempuh mobil per t
 
 - 2c. Buatlah kesimpulan berdasarkan P-Value yang dihasilkan!
 
-Dari poin 2b didapatkan p-value sebesar `2.2.e-16` yang mana lebih kecil dibandingkan tingkat signifikansi `𝛼 = 0.05`. Sehingga H0 ditolak dan H1 diterima, dalam artian klaim bahwa mobil dikemudikan rata-rata lebih dari 20000 kilometer per tahun dapat diterima.
+Dari poin 2b didapatkan p-value sebesar `2.2e-16` yang mana lebih kecil dibandingkan tingkat signifikansi `𝛼 = 0.05`. Sehingga H0 ditolak dan H1 diterima, dalam artian klaim bahwa mobil dikemudikan rata-rata lebih dari 20000 kilometer per tahun dapat diterima.
+
+$~$
 
 ## Soal 3
 > Diketahui perusahaan memiliki seorang data analyst ingin memecahkan permasalahan pengambilan keputusan dalam perusahaan tersebut. Selanjutnya didapatkanlah data berikut dari perusahaan saham tersebut.
@@ -109,6 +112,8 @@ tsum.test(mean.x = 3.64, s.x = 1.67, n.x = 19,
           alternative = "two.sided", var.equal = TRUE)
 ```
 
+![image](https://user-images.githubusercontent.com/96050618/207259333-9f7e8a50-305e-4747-8905-abb063f705d0.png)
+
 - 3c. Lakukan Uji Statistik (df = 2)
 
 Uji statistik dilakukan dengan fungsi `plotDist()` yang membutuhkan package library `mosaic`.
@@ -124,18 +129,25 @@ plotDist(dist = 't', df = 2, col = "#FFBC04")
 
 - 3d. Nilai Kritikal
 
-Nilai kritikal didapatkan dengan fungsi qchisq() dengan derajat bebas 2 dan
+Nilai kritikal dicari menggunakan fungsi `qt()` dengan argumen tingkat signifikan `𝛼 / 2` dan derajat bebas 44. Serta dilakukan dua kali dengan argumen `lower.tail` bernilai TRUE dan FALSE dikarenakan grafik bersifat two sided.
 
 ```R
 #3d
-qchisq(p = 0.05, df = 2, lower.tail = FALSE)
+qt(p = 0.025, df = 44, lower.tail = TRUE)
+qt(p = 0.025, df = 44, lower.tail = FALSE)
 ```
-![Screenshot_20221212_114310](https://user-images.githubusercontent.com/96050618/207103055-3082bdd3-2745-4ffc-a68d-27137354e85e.png)
+
+![image](https://user-images.githubusercontent.com/96050618/207259498-48c3a5a2-4b6e-40ff-a401-b7a8e2524e1a.png)
 
 - 3e. Keputusan
 
+Dari poin-poin sebelumnya didapat hasil uji t bernilai `1.9267` yang mana berada diantara kedua nilai kritikal. Serta p-value bernilai `0.06049` yang mana bernilai lebih kecil dari tingkat signifikansi `𝛼 = 0.05`. Sehingga keputusannya adalah tidak menolak H0.
+
 - 3f. Kesimpulan
 
+Kesimpulan yang bisa diambil adalah tidak ada bukti yang cukup bahwa tidak ada perbedaan pada rata-rata saham Bandung dan Bali.
+
+$~$
 
 ## Soal 4
 > Seorang Peneliti sedang meneliti spesies dari kucing di ITS . Dalam penelitiannya ia mengumpulkan data  tiga spesies kucing yaitu kucing oren, kucing hitam dan kucing putih dengan panjangnya masing-masing. Jika diketahui dataset  https://intip.in/datasetprobstat1 dan H0 : Tidak ada perbedaan panjang antara ketiga spesies atau rata-rata panjangnya sama, Maka Kerjakan atau Carilah:
@@ -231,6 +243,7 @@ ggplot(koceng, aes(x = Group, y = Length)) +
 
 ![Screenshot_20221212_112550](https://user-images.githubusercontent.com/96050618/207098933-6016dd82-1fb0-4250-9817-a5579abed21d.png)
 
+$~$
 
 ## Soal 5
 > Data yang digunakan merupakan hasil eksperimen yang dilakukan untuk mengetahui pengaruh suhu operasi (100˚C, 125˚C dan 150˚C) dan tiga jenis kaca pelat muka (A, B dan C) pada keluaran cahaya tabung osiloskop. Percobaan dilakukan sebanyak 27 kali dan didapat data sebagai berikut: Data Hasil Eksperimen. Dengan data tersebut: 
