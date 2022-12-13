@@ -248,6 +248,8 @@ gtl <- read.csv("GTL.csv")
 qplot(x = Temp, y = Light, data = gtl, geom = "point") + facet_grid(.~Glass, labeller = label_both)
 ```
 
+![Screenshot_20221213_091712](https://user-images.githubusercontent.com/96050618/207209801-7969962f-1835-4dbd-afbc-9982718d40af.png)
+
 - 5b. Lakukan uji ANOVA dua arah untuk 2 faktor!
 
 Kedua variabel pada data GTL.csv dibuat menjadi variabel `as.factor()`, kemudian uji ANOVA dilakukan dengan fungsi `aov()` dan ringkasan hasil uji dilihat dengan fungsi `summary()`.
@@ -260,6 +262,8 @@ anova <- aov(Light ~ Glass*Temp, data = gtl)
 summary(anova)
 ```
 
+![Screenshot_20221213_091838](https://user-images.githubusercontent.com/96050618/207209974-9c7bcfbc-33dc-4a4b-b948-8c3cbd94c591.png)
+
 - 5c. Tampilkan tabel dengan mean dan standar deviasi keluaran cahaya untuk setiap perlakuan (kombinasi kaca pelat muka dan suhu operasi)!
 
 Digunakan fungsi `group_by()` dengan argumen berupa dataset, kaca pelat, dan suhu operasi. Kemudian rata-rata dan standar deviasi untuk setiap perlakuan dimasukkan ke tabel dengan fungsi `summarise()`.
@@ -271,6 +275,8 @@ tabel <- group_by(gtl, Glass, Temp) %>% summarise(mean = mean(Light), sd = sd(Li
 tabel
 ```
 
+![Screenshot_20221213_091923](https://user-images.githubusercontent.com/96050618/207210066-faba4885-4c79-4121-b547-8090d6b9fae7.png)
+
 - 5d. Lakukan uji Tukey!
 
 Uji Tukey menggunakan fungsi `TukeyHSD()` dengan argumen hasil uji anova dari poin sebelumnya.
@@ -280,14 +286,18 @@ Uji Tukey menggunakan fungsi `TukeyHSD()` dengan argumen hasil uji anova dari po
 TukeyHSD(anova)
 ```
 
+![Screenshot_20221213_091955](https://user-images.githubusercontent.com/96050618/207210157-9ba57677-4007-4897-9d00-822d8eafcea0.png)
+
 - 5e. Gunakan compact letter display untuk menunjukkan perbedaan signifikan antara uji Anova dan uji Tukey!
 
-Hasil uji Anova dan uji Tukey dalam bentuk aov object, sehingga compact letter display dibuat menggunakan fungsi `multcompLetters4` dari libarary multcompView.
+Hasil uji Anova dan uji Tukey dalam bentuk aov object, sehingga compact letter display dibuat menggunakan fungsi `multcompLetters4()` dari libarary multcompView dengan argumen hasil uji Anova dan hasil uji Tukey.
 
 ```R
 #5e
 install.packages("multcompView")
 library(multcompView)
-tukeycld <- multcompLetters4(anova, TukeyHSD(anova))
-tukeycld
+cld <- multcompLetters4(anova, TukeyHSD(anova))
+cld
 ```
+
+![Screenshot_20221213_092055](https://user-images.githubusercontent.com/96050618/207210303-69113e1a-e1eb-4be0-b662-3ba385f059b1.png)
