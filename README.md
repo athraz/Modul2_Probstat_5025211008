@@ -239,10 +239,55 @@ ggplot(koceng, aes(x = Group, y = Length)) +
 
 - 5a. Buatlah plot sederhana untuk visualisasi data!
 
+File csv di download terlebih dahulu dan diletakkan pada directory yang digunakan sebagai workingspace, kemudian dibaca menggunakan fungsi `read.csv()`. Setelah itu, divisualisasikan menggunakan quick plot dengan fungsi `qplot()`.
+
+```R
+#5a
+library(ggplot2)
+gtl <- read.csv("GTL.csv")
+qplot(x = Temp, y = Light, data = gtl, geom = "point") + facet_grid(.~Glass, labeller = label_both)
+```
+
 - 5b. Lakukan uji ANOVA dua arah untuk 2 faktor!
+
+Kedua variabel pada data GTL.csv dibuat menjadi variabel `as.factor()`, kemudian uji ANOVA dilakukan dengan fungsi `aov()` dan ringkasan hasil uji dilihat dengan fungsi `summary()`.
+
+```R
+#5b
+gtl$Glass <- as.factor(gtl$Glass)
+gtl$Temp <- as.factor(gtl$Temp)
+anova <- aov(Light ~ Glass*Temp, data = gtl)
+summary(anova)
+```
 
 - 5c. Tampilkan tabel dengan mean dan standar deviasi keluaran cahaya untuk setiap perlakuan (kombinasi kaca pelat muka dan suhu operasi)!
 
+Digunakan fungsi `group_by()` dengan argumen berupa dataset, kaca pelat, dan suhu operasi. Kemudian rata-rata dan standar deviasi untuk setiap perlakuan dimasukkan ke tabel dengan fungsi `summarise()`.
+
+```R
+#5c
+library(dplyr)
+tabel <- group_by(gtl, Glass, Temp) %>% summarise(mean = mean(Light), sd = sd(Light))
+tabel
+```
+
 - 5d. Lakukan uji Tukey!
 
+Uji Tukey menggunakan fungsi `TukeyHSD()` dengan argumen hasil uji anova dari poin sebelumnya.
+
+```R
+#5d
+TukeyHSD(anova)
+```
+
 - 5e. Gunakan compact letter display untuk menunjukkan perbedaan signifikan antara uji Anova dan uji Tukey!
+
+Hasil uji Anova dan uji Tukey dalam bentuk aov object, sehingga compact letter display dibuat menggunakan fungsi `multcompLetters4` dari libarary multcompView.
+
+```R
+#5e
+install.packages("multcompView")
+library(multcompView)
+tukeycld <- multcompLetters4(anova, TukeyHSD(anova))
+tukeycld
+```
