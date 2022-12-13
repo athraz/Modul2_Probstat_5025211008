@@ -104,12 +104,10 @@ Statistik sampel dihitung dengan fungsi `tsum.test()` dengan argumen sesuai deng
 
 ```R
 #3b
-tsum.test(mean.x = 36.4, s.x = 1.67, n.x = 19, 
+tsum.test(mean.x = 3.64, s.x = 1.67, n.x = 19, 
           mean.y = 2.79, s.y = 1.32, n.y = 27,
           alternative = "two.sided", var.equal = TRUE)
 ```
-
-![Screenshot_20221212_113432](https://user-images.githubusercontent.com/96050618/207101015-3815c193-1696-4017-8c0b-64c8e0205619.png)
 
 - 3c. Lakukan Uji Statistik (df = 2)
 
