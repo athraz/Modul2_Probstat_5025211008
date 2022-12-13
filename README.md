@@ -141,7 +141,7 @@ qt(p = 0.025, df = 44, lower.tail = FALSE)
 
 - 3e. Keputusan
 
-Dari poin-poin sebelumnya didapat hasil uji t bernilai `1.9267` yang mana berada diantara kedua nilai kritikal. Serta p-value bernilai `0.06049` yang mana bernilai lebih kecil dari tingkat signifikansi `𝛼 = 0.05`. Sehingga keputusannya adalah tidak menolak H0.
+Dari poin-poin sebelumnya didapat hasil uji t bernilai `1.9267` yang mana berada diantara kedua nilai kritikal. Serta p-value bernilai `0.06049` yang mana bernilai lebih besar dari tingkat signifikansi `𝛼 = 0.05`. Sehingga keputusannya adalah tidak menolak H0.
 
 - 3f. Kesimpulan
 
