@@ -18,7 +18,7 @@ tsum.test(mean.x = 23500, s.x = 3900, n.x = 100)
 
 #SOAL 3
 #3b
-tsum.test(mean.x = 36.4, s.x = 1.67, n.x = 19, 
+tsum.test(mean.x = 3.64, s.x = 1.67, n.x = 19, 
           mean.y = 2.79, s.y = 1.32, n.y = 27,
           alternative = "two.sided", var.equal = TRUE)
 
@@ -28,10 +28,11 @@ library(mosaic)
 plotDist(dist = 't', df = 2, col = "#FFBC04")
 
 #3d
-qchisq(p = 0.05, df = 2, lower.tail = FALSE)
+qt(p = 0.025, df = 44, lower.tail = TRUE)
+qt(p = 0.025, df = 44, lower.tail = FALSE)
 
 
-#sOAL 4
+#SOAL 4
 #4a
 koceng <- read.table("https://rstatisticsandresearch.weebly.com/uploads/1/0/2/6/1026585/onewayanova.txt", header = TRUE)
 grup1 <- split(koceng, koceng$Group)$`1`
